@@ -1,2 +1,4 @@
 .vscode
 CourseRunner.java
+
+src/test*
