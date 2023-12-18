@@ -74,11 +74,18 @@ int main( int argc, char* argv[] ) {
         // Output detected copy number variations
         std::cout << "Result is : " << isClone << std::endl;
 
-        if ( internal.compare( "f") = == 0 ) {
-
+        if (internal == "t" && isClone) {
+            eval[type][0]++;
+        } else if (internal == "f" && isClone) {
+            eval[type][1]++;
+        } else if (internal == "f" && !isClone) {
+            eval[type][2]++;
+        } else {
+            eval[type][3]++;
         }
-        
     }
+
+    // print eval
 
     file.close();
 
