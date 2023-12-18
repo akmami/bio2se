@@ -1,5 +1,5 @@
-#include "process.cpp"
-#include "bloom.cpp"
+#include "../src/process.cpp"
+#include "../src/bloom.cpp"
 
 
 int main( int argc, char* argv[] ) {
@@ -31,7 +31,6 @@ int main( int argc, char* argv[] ) {
 
     while (std::getline(file, line)) {
         
-        std::cout << "reading line" << std::endl;
         row = line;
 
         // Create a stringstream from the line
@@ -45,6 +44,8 @@ int main( int argc, char* argv[] ) {
         std::getline(ss, function_id_two, ',');
         std::getline(ss, syntactic_type, ',');
         std::getline(ss, internal, ',');
+
+        std::cout << internal << std::endl;
 
         int type = atoi(syntactic_type.c_str());
 
@@ -62,15 +63,9 @@ int main( int argc, char* argv[] ) {
             pretty_function_two += line;
         }
 
-        std::string code1 = process::basic(pretty_function_one);
-        std::string code2 = process::basic(pretty_function_two);
-
-
         std::string tokenized1 = process::tokenize(pretty_function_one);
         std::string tokenized2 = process::tokenize(pretty_function_two);
 
-        std::cout << "code1 : " << code1 << std::endl;
-        std::cout << "code2 : " << code2 << std::endl;
         std::cout << "tokenized1 : " << tokenized1 << std::endl;
         std::cout << "tokenized2 : " << tokenized2 << std::endl;
 
@@ -78,6 +73,11 @@ int main( int argc, char* argv[] ) {
         
         // Output detected copy number variations
         std::cout << "Result is : " << isClone << std::endl;
+
+        if ( internal.compare( "f") = == 0 ) {
+
+        }
+        
     }
 
     file.close();
