@@ -18,7 +18,10 @@ fi
 
 # Create output file
 if [ ! -e "$CSV_OUTPUT" ]; then
-    touch "$CSV_OUTPUT";
+  echo "Output file create to $CSV_OUTPUT.";
+  touch "$CSV_OUTPUT";
+else;
+  echo "Output file $CSV_OUTPUT already exists.";
 fi
 
 sudo chmod +x "$CSV_OUTPUT";
