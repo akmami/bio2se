@@ -1,5 +1,5 @@
-main:
-	g++ -o bloom bloom.cpp 
+main: clean
+	g++ -o main main.cpp 
 
 clean:
-	rm -f bloom
+	rm -f main
