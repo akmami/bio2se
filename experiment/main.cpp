@@ -29,6 +29,8 @@ int main( int argc, char* argv[] ) {
     // Skip header row
     std::getline(file, line);
 
+    int checkpointCounter = 0;
+
     while (std::getline(file, line)) {
         
         row = line;
@@ -66,8 +68,8 @@ int main( int argc, char* argv[] ) {
         std::string tokenized1 = process::tokenize(pretty_function_one);
         std::string tokenized2 = process::tokenize(pretty_function_two);
 
-        std::cout << "tokenized1 : " << tokenized1 << std::endl;
-        std::cout << "tokenized2 : " << tokenized2 << std::endl;
+        //std::cout << "tokenized1 : " << tokenized1 << std::endl;
+        //std::cout << "tokenized2 : " << tokenized2 << std::endl;
 
         bool isClone = bloom::isClone(pretty_function_one, pretty_function_two, bloomFilterSize, falsePositivityProbability, chunkSize);
         
@@ -82,6 +84,36 @@ int main( int argc, char* argv[] ) {
             eval[type][2]++;
         } else {
             eval[type][3]++;
+        }
+
+        checkpointCounter++;
+        if (checkpointCounter % 1000 == 0) {
+            std::cout << "Checkpoint " << checkpointCounter << std::endl;
+            std::cout << "\tTP\tFP\tFN\tTN" << std::endl;
+
+            std::cout << "Type 1" << std::endl;
+            for (int j = 0; j < 4; j++) {
+                std::cout << eval[0][j] << "\t";
+            }
+            std::cout << std::endl;
+
+            std::cout << "Type 2" << std::endl;
+            for (int j = 0; j < 4; j++) {
+                std::cout << eval[1][j] << "\t";
+            }
+            std::cout << std::endl;
+
+            std::cout << "Type 3" << std::endl;
+            for (int j = 0; j < 4; j++) {
+                std::cout << eval[2][j] << "\t";
+            }
+            std::cout << std::endl;
+
+            std::cout << "Type 4" << std::endl;
+            for (int j = 0; j < 4; j++) {
+                std::cout << eval[3][j] << "\t";
+            }
+            std::cout << std::endl;
         }
     }
 
